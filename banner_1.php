@@ -134,55 +134,46 @@ if($_SESSION['status_ca'] !="login"){
     </div>
     <!-- /.modal -->
 
-      <div class="modal fade" id="modal-add">
+    <div class="modal fade" id="modal-add">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title" id="exampleModalLabel">Add - New Customer</h4>
+                    <h4 class="modal-title" id="exampleModalLabel">Add - Banner 1</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
 
-                <form action="controller/conn_add_konsumen.php" method="post">
-                    <div class="modal-body">
-
-                    <div class="form-group row">
-                            <label for="nik" class="col-sm-12 col-form-label">Id Konsumen</label>
-                            <div class="col-sm-12">
-                                <input type="text" class="form-control" id="idKonE2" name="idKonE2"
-                                    placeholder="Id Konsumen" value="" data-inputmask='"mask": "a{1,4}-9999"' data-mask>
-                            </div>
-                        </div>
+                <form action="controller/conn_add_banner1.php" method="post">
+                    <div class="modal-body">                        
                         <div class="form-group row">
-                            <label for="namaPerusahaan" class="col-sm-12 col-form-label">Nama Perusahaan</label>
+                            <label for="inputJudul" class="col-sm-12 col-form-label">Judul</label>
                             <div class="col-sm-12">
-                                <input type="text" class="form-control" id="namaPerusahaan" name="namaPerusahaan"
-                                    placeholder="Nama Perusahaan" value="">
+                                <input type="text" class="form-control" id="inputJudul" name="judul"
+                                    placeholder="place some text here" value="">
                             </div>
                         </div>
 
-                        <div class="form-group row">
-                            <label for="alamatPerusahaan" class="col-sm-12 col-form-label">Alamat Perusahaan</label>
+                        <!-- <div class="form-group row">
+                            <label for="inputGambar" class="col-sm-12 col-form-label">Gambar</label>
                             <div class="col-sm-12">
-                                <input type="text" class="form-control" id="alamatPerusahaan" name="alamatPerusahaan"
-                                    placeholder="Alamat Perusahaan" value="">
+                                <input type="text" class="form-control" id="inputGambar" name="lampiran"
+                                    placeholder="place some text here" value="">
                             </div>
-                        </div>
+                        </div> -->
 
                         <div class="form-group row">
-                            <label for="noTelp" class="col-sm-12 col-form-label">No Telphone Perusahaan</label>
+                            <label for="inputDiscount" class="col-sm-12 col-form-label">Text Discount</label>
                             <div class="col-sm-12">
-                                <input type="text" class="form-control" id="noTelp" name="noTelp" data-inputmask='"mask": "9999999999999"' data-mask
-                                    placeholder="No Telp Perusahaan" value="">
+                                <input type="number" class="form-control" id="inputDiscount" name="textDiscount"
+                                    placeholder="place some text here" value="" max=100> 
                             </div>
                         </div>
 
                         <div class="form-group row">
-                            <label for="emailPerusahaan" class="col-sm-12 col-form-label">Email Perusahaan</label>
+                            <label for="text3" class="col-sm-12 col-form-label">Text 3</label>
                             <div class="col-sm-12">
-                                <input type="email" class="form-control" id="emailPerusahaan" name="emailPerusahaan"
-                                    placeholder="Account Name" value="">
+                                <input type="text" class="form-control" id="text3" name="text3" placeholder="place some text here" value="">
                             </div>
                         </div>
 
@@ -233,9 +224,10 @@ if($_SESSION['status_ca'] !="login"){
                         <div class="col-12">
                             <div class="card">
                                 <div style="text-align: right;">
-                                    <a href="../cms_kacamata/add_artikel.php" class="btn btn-success float-sm-right" style="right: 0px; width: 150px; margin-top: 10px; margin-right: 20px;">
-                                        Tambah Artikel
-                                    </a>
+                                    <button  class="btn btn-success float-sm-right" data-toggle="modal"
+                                        data-target="#modal-add" style="right: 0px; width: 200px; margin-top: 10px; margin-right: 20px;">
+                                        Tambah Banner 1
+                                    </button>
                                 </div>
 
                                 <!-- /.card-header -->
@@ -259,14 +251,14 @@ if($_SESSION['status_ca'] !="login"){
                                             <tr>
                                                 <td><?php echo $d_head['judul']; ?></td>
                                                 <td> <img src="/../cms_kacamata/img/thumbnail/nba2k19.jpg" alt=""> </td>
-                                                <td><?php echo $d_head['text_discount']; ?></td>
+                                                <td><?php echo $d_head['text_discount']; ?> %</td>
                                                 <td><?php echo $d_head['text3']; ?></td>
                                                 <td>
                                                     <a class="btn btn-info" id="btnAddCol" href="edit_artikel.php?id_artikel=<?php echo $d_head['id_article']; ?>"
                                                         style="width: 150px; margin-top: 10px; margin-right: 20px;">
                                                         <i class="fas fa-pencil-alt"></i> Edit
                                                     </a>
-                                                    <a type="submit" class="btn btn-danger" href="controller/conn_delete_artikel.php?id_artikel=<?php echo $d_head['id_article']; ?>"
+                                                    <a type="submit" class="btn btn-danger" href="controller/conn_delete_banner1.php?id_banner=<?php echo $d_head['id_banner']; ?>"
                                                         style="width: 150px; margin-top: 10px; right: 0px;">
                                                         <i class="fas fa-times"></i> Delete
                                                     </a>
@@ -356,7 +348,6 @@ if($_SESSION['status_ca'] !="login"){
                 "autoWidth": false,
                 "paging": false,
                 "sorting": false,
-                "buttons": ["copy", "csv", "excel", "pdf", "print"]
             }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
             $('#example2').DataTable({
                 "paging": true,

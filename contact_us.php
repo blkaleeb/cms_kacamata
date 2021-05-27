@@ -5,6 +5,14 @@ session_start();
 if($_SESSION['status_ca'] !="login"){
     header("location:login.php");
 }
+
+$result_head = mysqli_query($db2,"select * from `contact_us`");
+while($d_head = mysqli_fetch_array($result_head)){
+   $address= $d_head['address'];
+   $phone= $d_head['phone'];
+   $email= $d_head['email'];
+   $address_google= $d_head['address_google'];
+}
 ?>
 <html lang="en">
 
@@ -231,30 +239,31 @@ if($_SESSION['status_ca'] !="login"){
                             <div class="card">
                                 <!-- /.card-header -->
                                 <div class="card-body">
+                                <form action="../cms_kacamata/controller/conn_edit_contactUs.php" method="post">
                                     <div class="row">
                                         <div class="col-md">
                                             <div class="form-group row">
                                                 <label for="alamat" class="col-sm-3 col-form-label">Alamat:</label>
                                                 <div class="col-sm-3">
-                                                    <input type="text" class="form-control" id="alamat" name="alamat" data-inputmask='"mask": "a{1,4}-9999"' data-mask>
+                                                    <input type="text" class="form-control" id="alamat" name="alamat" value="<?php echo $address; ?>">
                                                 </div>
                                             </div>
                                             <div class="form-group row">
                                                 <label for="no_hp" class="col-sm-3 col-form-label">Telepon:</label>
                                                 <div class="col-sm-3">
-                                                    <input type="text" class="form-control" id="no_hp" name="no_hp" value=""/>
+                                                    <input type="text" class="form-control" id="no_hp" name="no_hp" value="<?php echo $phone; ?>"/>
                                                 </div>
                                             </div>
                                             <div class="form-group row">
                                                 <label for="email" class="col-sm-3 col-form-label">Email:</label>
                                                 <div class="col-sm-3">
-                                                    <input type="email" class="form-control" id="email" name="email" value=""/>
+                                                    <input type="email" class="form-control" id="email" name="email" value="<?php echo $email; ?>"/>
                                                 </div>
                                             </div>
                                             <div class="form-group row">
                                                 <label for="location" class="col-sm-3 col-form-label">Link lokasi:</label>
                                                 <div class="col-sm-3">
-                                                    <input type="location" class="form-control" id="location" name="location" value=""/>
+                                                    <input type="location" class="form-control" id="location" name="location" value="<?php echo $address_google; ?>"/>
                                                 </div>
                                             </div>
                                             <button type="submit" class="btn btn-success"

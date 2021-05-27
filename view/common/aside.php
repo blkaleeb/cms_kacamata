@@ -62,8 +62,8 @@ if (isset($_GET['periode']) && !isset($_GET['outlet_x'])) {
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="konsumen.php"
-                        class="nav-link <?php if ($first_part=="konsumen.php") {echo "active"; } else  {echo "noactive";}?>">
+                    <a href="contact_us.php"
+                        class="nav-link <?php if ($first_part=="contact_us.php") {echo "active"; } else  {echo "noactive";}?>">
                         <i class="nav-icon fas fa-user"></i>
                         <p>
                             Contact Us
@@ -71,26 +71,17 @@ if (isset($_GET['periode']) && !isset($_GET['outlet_x'])) {
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="supplier.php"
-                        class="nav-link <?php if ($first_part=="supplier.php") {echo "active"; } else  {echo "noactive";}?>">
+                    <a href="produk.php"
+                        class="nav-link <?php if ($first_part=="produk.php") {echo "active"; } else  {echo "noactive";}?>">
                         <i class="nav-icon fas fa-box"></i>
                         <p>
-                            Supplier
+                            Produk
                         </p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="karyawan.php"
-                        class="nav-link <?php if ($first_part=="karyawan.php") {echo "active"; } else  {echo "noactive";}?>">
-                        <i class="nav-icon fas fa-people-carry"></i>
-                        <p>
-                            Karyawan
-                        </p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link <?php if ($first_part=="pesanan_barang.php" || $first_part=="report_pesanan.php" 
-                    || $first_part=="detail_pesanan.php") {echo "active"; } else  {echo "noactive";}?>">
+                    <a href="#" class="nav-link <?php if ($first_part=="banner_1.php" || $first_part=="banner_promo.php" 
+                    || $first_part=="banner_2.php") {echo "active"; } else  {echo "noactive";}?>">
                         <i class="nav-icon fas fa-shopping-cart"></i>
                         <p>
                             Banner
@@ -99,22 +90,22 @@ if (isset($_GET['periode']) && !isset($_GET['outlet_x'])) {
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="pesanan_barang.php"
-                                class="nav-link <?php if ($first_part=="pesanan_barang.php") {echo "active"; } else  {echo "noactive";}?>">
+                            <a href="banner_1.php"
+                                class="nav-link <?php if ($first_part=="banner_1.php") {echo "active"; } else  {echo "noactive";}?>">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Banner 1</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="detail_pesanan.php"
-                                class="nav-link <?php if ($first_part=="detail_pesanan.php") {echo "active"; } else  {echo "noactive";}?>">
+                            <a href="banner_2.php"
+                                class="nav-link <?php if ($first_part=="banner_2.php") {echo "active"; } else  {echo "noactive";}?>">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Banner 2</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="report_pesanan.php"
-                                class="nav-link <?php if ($first_part=="report_pesanan.php") {echo "active"; } else  {echo "noactive";}?>">
+                            <a href="banner_promo.php"
+                                class="nav-link <?php if ($first_part=="banner_promo.php") {echo "active"; } else  {echo "noactive";}?>">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Banner 3</p>
                             </a>

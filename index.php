@@ -21,7 +21,7 @@ session_start();
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1 class="m-0">Dashboard<br>
+                            <h1 class="m-0"><br>
 
                             
                             </h1>
@@ -31,6 +31,11 @@ session_start();
                                 <li class="breadcrumb-item"><a href="#">Home</a></li>
                                 <li class="breadcrumb-item active">Dashboard</li>
                             </ol>
+                        </div><!-- /.col -->
+                        <div class="col-sm text-center">
+                            <p for="" style="font-size:32px; font-weight:semi-bold">
+                                Selamat datang di Content Management System untuk Kacamata
+                            </p>
                         </div><!-- /.col -->
                     </div><!-- /.row -->
                 </div><!-- /.container-fluid -->
