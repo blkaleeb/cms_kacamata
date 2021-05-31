@@ -41,8 +41,6 @@ while($d_head = mysqli_fetch_array($result_head)){
     <link rel="stylesheet" href="plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
     <!-- icon -->
     <link rel="icon" href="dist/img/logogram.png">
-    <!-- summernote -->
-    <link rel="stylesheet" href="plugins/summernote/summernote-bs4.min.css">
     <style>
         .none {
             display: none;
@@ -148,58 +146,33 @@ while($d_head = mysqli_fetch_array($result_head)){
     <!-- /.modal -->
 
       <div class="modal fade" id="modal-add">
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title" id="exampleModalLabel">Add - New Customer</h4>
+                    <h4 class="modal-title" id="exampleModalLabel">Add - New Varian (<?php echo $id_produk; ?>) </h4>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
 
-                <form action="controller/conn_add_konsumen.php" method="post">
+                <form action="controller/conn_add_varianProduk.php" method="post">
                     <div class="modal-body">
 
-                    <div class="form-group row">
-                            <label for="nik" class="col-sm-12 col-form-label">Id Konsumen</label>
-                            <div class="col-sm-12">
-                                <input type="text" class="form-control" id="idKonE2" name="idKonE2"
-                                    placeholder="Id Konsumen" value="" data-inputmask='"mask": "a{1,4}-9999"' data-mask>
-                            </div>
-                        </div>
                         <div class="form-group row">
-                            <label for="namaPerusahaan" class="col-sm-12 col-form-label">Nama Perusahaan</label>
-                            <div class="col-sm-12">
-                                <input type="text" class="form-control" id="namaPerusahaan" name="namaPerusahaan"
-                                    placeholder="Nama Perusahaan" value="">
+                            <div class="col-4">
+                            <label>Lampirkan Varian Kacamata</label>
                             </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="alamatPerusahaan" class="col-sm-12 col-form-label">Alamat Perusahaan</label>
-                            <div class="col-sm-12">
-                                <input type="text" class="form-control" id="alamatPerusahaan" name="alamatPerusahaan"
-                                    placeholder="Alamat Perusahaan" value="">
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="noTelp" class="col-sm-12 col-form-label">No Telphone Perusahaan</label>
-                            <div class="col-sm-12">
-                                <input type="text" class="form-control" id="noTelp" name="noTelp" data-inputmask='"mask": "9999999999999"' data-mask
-                                    placeholder="No Telp Perusahaan" value="">
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="emailPerusahaan" class="col-sm-12 col-form-label">Email Perusahaan</label>
-                            <div class="col-sm-12">
-                                <input type="email" class="form-control" id="emailPerusahaan" name="emailPerusahaan"
-                                    placeholder="Account Name" value="">
+                            <div class="col">
+                            <input class="form-control" type="file" id="lampiran" name="lampiran">
+                            <label for="lampiran"><img id="blah"
+                                style="width: 200px; border: 1px solid black; margin-top: 30px; paddingL 10px;"
+                                src="img/upload.PNG" alt="your image" /></label>
                             </div>
                         </div>
 
                     </div>
+
+                    <input type="hidden" id="id_produk" name="id_produk" value="<?php echo $id_produk;?>">
 
                     <div class="modal-footer">
                         <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
@@ -225,15 +198,12 @@ while($d_head = mysqli_fetch_array($result_head)){
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1 class="m-0">Edit Produk
+                            <h1 class="m-0"> Varian Produk - <?php echo $id_produk; ?>
                             </h1>
                         </div><!-- /.col -->
                         <div class="col-sm-6">
-                            <ol class="breadcrumb float-sm-right">
-                                <li class="breadcrumb-item"><a href="#">Home</a></li>
-                                <li class="breadcrumb-item active">Product - Edit</li>
-                            </ol>
-                        </div>
+
+                        </div><!-- /.col -->
                     </div><!-- /.row -->
                 </div><!-- /.container-fluid -->
             </div>
@@ -245,50 +215,44 @@ while($d_head = mysqli_fetch_array($result_head)){
                     <div class="row">
                         <div class="col-12">
                             <div class="card">
-                                <div class="card-header">
-                                    <h3 class="card-title">Edit Produk</h3>
+                                <div style="text-align: right;">
+                                    <button class="btn btn-success float-sm-right" style="right: 0px; width: 150px; margin-top: 10px; margin-right: 20px;" data-toggle="modal" data-target="#modal-add">
+                                        <i class="fas fa-plus">
+                                        </i>
+                                        Tambah Varian
+                                    </button>
                                 </div>
 
                                 <!-- /.card-header -->
                                 <div class="card-body">
-                                    <form action="../cms_kacamata/controller/conn_edit_produk.php" method="post">
-                                        <div class="row">
-                                            <div class="col-md-12">
-                                                <div class="form-group">
-                                                    <label for="inputIdProduk">ID Produk</label>
-                                                    <input type="text" value="<?php echo $id_produk;?>" id="inputIdProduk" name="idProduk" class="form-control" required data-inputmask='"mask": "a{1,4}-9999"' readonly>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-12">
-                                                <div class="form-group">
-                                                    <label for="inputNamaProduk">Nama Produk</label>
-                                                    <input type="text" value="<?php echo $nama;?>" id="inputNamaProduk" name="namaProduk" class="form-control" required>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-12">
-                                                <div class="form-group">
-                                                    <label for="inputDeskripsi">Deskripsi</label>
-                                                    <textarea class="konten" id="inputDeskripsi" name="deskripsi" placeholder="Place some text here" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;" required autocomplete="off">
-                                                    <?php echo $deskripsi; ?>
-                                                    </textarea>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label for="inputHarga" class="col-sm-1 col-form-label">Harga</label>
-                                            <div class="col-md-2">
-                                                <input type="text" value="<?php echo $harga;?>" id="inputHarga" name="harga" class="number-separator form-control" required autocomplete="off">
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label for="inputDiscount" class="col-sm-1 col-form-label">Discount</label>
-                                            <div class="col-md-1">
-                                                <input type="number" value="<?php echo $discount;?>" id="inputDiscount" name="discount" class="form-control" max=100 min=0 autocomplete="off">
-                                            </div>
-                                            <label class="col-sm-1 col-form-label">%</label>
-                                        </div>
-                                        <button type="submit" class="btn btn-primary float-right">Simpan</button>
-                                    </form>        
+                                    <table id="example1" class="table table-bordered table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th>Varian</th>
+                                                <th>Action <?php echo $d_head['gambar']; ?></th>
+                                                
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?php 
+                                            $no = 1;
+                                            $result_head = mysqli_query($db2,"select * from `varian` where id_produk = '$id_produk'");
+                                            while($d_head = mysqli_fetch_array($result_head)){
+                                            ?>
+                                            <tr>
+                                                <td><?php echo $d_head['gambar']; ?></td>
+                                                <td>
+                                                    <a type="submit" class="btn btn-danger" href="controller/conn_delete_varianProduk.php?id_produk=<?php echo $d_head['id_produk']; ?>&gambar=<?php echo $d_head['gambar']; ?>"
+                                                        style="width: 150px; margin-top: 10px; right: 0px;">
+                                                        <i class="fas fa-times"></i> Delete
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                            
+                                            <?php } ?>
+                                            
+                                        </tbody>
+                                    </table>
                                 </div>
                                 <!-- /.card-body -->
                             </div>
@@ -348,39 +312,12 @@ while($d_head = mysqli_fetch_array($result_head)){
     <script src="plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
     <!-- AdminLTE for demo purposes -->
     <script src="dist/js/demo.js"></script>
-    <!-- Summernote -->
-    <script src="plugins/summernote/summernote-bs4.min.js"></script>
     <!-- InputMask -->
     <script src="plugins/moment/moment.min.js"></script>
+    <script src="plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
     <script src="plugins/inputmask/jquery.inputmask.min.js"></script>
-    <script src="plugins/number-thousand-separator/easy-number-separator.js"></script>
     <!-- Page specific script -->
     <script>
-        $(document).ready(function() {
-        $('#lampiran').summernote({
-            height: 200,
-            onImageUpload: function(files, editor, welEditable) {
-            sendFile(files[0], editor, welEditable);
-            }
-        });
-
-        function sendFile(file, editor, welEditable) {
-            data = new FormData();
-            data.append("file", file);
-            $.ajax({
-            data: data,
-            type: "POST",
-            url: "/../cms_kacamata/controller/conn_add_artikel.php",
-            cache: false,
-            contentType: false,
-            processData: false,
-            success: function(url) {
-                editor.insertImage(welEditable, url);
-            }
-            });
-        }
-        });
-        
             //Datemask dd/mm/yyyy
             $('#datemask').inputmask('dd/mm/yyyy', { 'placeholder': 'dd/mm/yyyy' })
             //Datemask2 mm/dd/yyyy
@@ -395,7 +332,6 @@ while($d_head = mysqli_fetch_array($result_head)){
                 "autoWidth": false,
                 "paging": false,
                 "sorting": false,
-                "buttons": ["copy", "csv", "excel", "pdf", "print"]
             }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
             $('#example2').DataTable({
                 "paging": true,
@@ -406,6 +342,23 @@ while($d_head = mysqli_fetch_array($result_head)){
                 "autoWidth": false,
                 "responsive": false,
             });
+        });
+
+        function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+            $('#blah').attr('src', e.target.result);
+            }
+
+            reader.readAsDataURL(input.files[0]); // convert to base64 string
+        }
+        }
+
+
+        $("#lampiran").change(function () {
+        readURL(this);
         });
         
         $('#modal-cancel').on('show.bs.modal', function (event) {
@@ -464,50 +417,6 @@ while($d_head = mysqli_fetch_array($result_head)){
                 $("#accountHead").removeClass("none");
             }
         });
-
-        $(function() {
-            // Summernote
-            $('.opening').summernote({
-                toolbar: [
-                    // [groupName, [list of button]]
-                    ['style', ['bold', 'italic', 'underline', 'clear']],
-                    ['font', ['strikethrough', 'superscript', 'subscript']],
-                    ['fontsize', ['fontsize']],
-                    ['color', ['color']],
-                    ['para', ['ul', 'ol', 'paragraph']],
-                    ['height', ['height']]
-                ]
-            });
-
-            // Summernote
-            $('.konten').summernote({
-                toolbar: [
-                    // [groupName, [list of button]]
-                    ['style', ['bold', 'italic', 'underline', 'clear']],
-                    ['font', ['strikethrough', 'superscript', 'subscript']],
-                    ['fontsize', ['fontsize']],
-                    ['color', ['color']],
-                    ['para', ['ul', 'ol', 'paragraph']],
-                    ['height', ['height']],
-                    ['table', ['table']],
-                    ['insert', ['link', 'picture', 'video']],
-                    ['view', ['fullscreen', 'codeview', 'help']],
-                ]
-            });
-
-            // Summernote
-            $('.lampiran').summernote({
-                toolbar: [
-                    ['insert', ['picture']],
-                ]
-            });
-        })
-        
-        function setKategori() {
-        var x = document.getElementById("kategori").value;
-        var arr_dataK = x.split('/');
-        document.getElementById("idKategori").value = arr_dataK[0];
-        }
     </script>
 </body>
 

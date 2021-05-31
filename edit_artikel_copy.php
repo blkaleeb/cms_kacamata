@@ -6,15 +6,16 @@ if($_SESSION['status_ca'] !="login"){
     header("location:login.php");
 }
 
-$id_produk = $_GET['id_produk'];
+$id_artikel = $_GET['id_artikel'];
 
-$result_head = mysqli_query($db2,"select * from `produk` where id_produk= '$id_produk' ");
+$result_head = mysqli_query($db2,"select * from `artikel` a join kategori k on a.id_kategori = k.id_kategori where id_article = $id_artikel");
 while($d_head = mysqli_fetch_array($result_head)){
-   $nama= $d_head['nama'];
+   $judul= $d_head['judul'];
    $deskripsi= $d_head['deskripsi'];
-   $discount= $d_head['discount'];
-   $harga= $d_head['harga'];
-   $gambar= $d_head['gambar'];
+   $tanggal_posting= $d_head['tanggal_posting'];
+   $id_kategori= $d_head['id_kategori'];
+   $tags= $d_head['tags'];
+   $kategori= $d_head['kategori'];
 }
 ?>
 <html lang="en">
@@ -225,13 +226,13 @@ while($d_head = mysqli_fetch_array($result_head)){
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1 class="m-0">Edit Produk
+                            <h1 class="m-0">Artikel
                             </h1>
                         </div><!-- /.col -->
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
                                 <li class="breadcrumb-item"><a href="#">Home</a></li>
-                                <li class="breadcrumb-item active">Product - Edit</li>
+                                <li class="breadcrumb-item active">Article - Index</li>
                             </ol>
                         </div>
                     </div><!-- /.row -->
@@ -246,7 +247,7 @@ while($d_head = mysqli_fetch_array($result_head)){
                         <div class="col-12">
                             <div class="card">
                                 <div class="card-header">
-                                    <h3 class="card-title">Edit Produk</h3>
+                                    <h3 class="card-title">Edit Artikel</h3>
                                 </div>
 
                                 <!-- /.card-header -->
@@ -255,38 +256,53 @@ while($d_head = mysqli_fetch_array($result_head)){
                                         <div class="row">
                                             <div class="col-md-12">
                                                 <div class="form-group">
-                                                    <label for="inputIdProduk">ID Produk</label>
-                                                    <input type="text" value="<?php echo $id_produk;?>" id="inputIdProduk" name="idProduk" class="form-control" required data-inputmask='"mask": "a{1,4}-9999"' readonly>
+                                                    <label for="inputIDProduk">ID Produk</label>
+                                                    <input type="text" id="inputIDProduk" name="produk" class="form-control" required autocomplete="off" value="<?php echo $judul; ?>" readonly>
                                                 </div>
                                             </div>
                                             <div class="col-md-12">
                                                 <div class="form-group">
-                                                    <label for="inputNamaProduk">Nama Produk</label>
-                                                    <input type="text" value="<?php echo $nama;?>" id="inputNamaProduk" name="namaProduk" class="form-control" required>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-12">
-                                                <div class="form-group">
-                                                    <label for="inputDeskripsi">Deskripsi</label>
-                                                    <textarea class="konten" id="inputDeskripsi" name="deskripsi" placeholder="Place some text here" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;" required autocomplete="off">
-                                                    <?php echo $deskripsi; ?>
+                                                    <label for="inputUrlGambar">URL Gambar</label>
+                                                    <textarea class="lampiran" id="inputContent" name="lampiran" placeholder="Place some text here" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;" required autocomplete="off">
+                                                        <?php echo "Gambar belum beres"; ?>
                                                     </textarea>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label for="inputHarga" class="col-sm-1 col-form-label">Harga</label>
-                                            <div class="col-md-2">
-                                                <input type="text" value="<?php echo $harga;?>" id="inputHarga" name="harga" class="number-separator form-control" required autocomplete="off">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label for="inputContent">Content</label>
+                                                    <textarea class="konten" id="inputContent" name="content" placeholder="Place some text here" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;" required autocomplete="off">
+                                                        <?php echo $deskripsi; ?>
+                                                    </textarea>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label for="inputCategory">Category</label>
+                                                    <select class="form-control" style="width: 100%;" name="kategori" id="kategori" onChange="setKategori()">
+                                                        <option value="" disabled selected>Category</option>
+                                                            <?php 
+                                                            $no = 1;
+                                                            $result_head = mysqli_query($db2,"select * from `kategori`");
+                                                            while($d_head = mysqli_fetch_array($result_head)){
+                                                            ?>
+                                                            <option value="<?php echo $d_head['id_kategori']; ?>/<?php echo $d_head['kategori']; ?>"
+                                                            <?php if ($d_head['id_kategori']== $id_kategori) {echo "selected";}?>>
+                                                                <?php echo $d_head['kategori']; ?></option>
+                                                            <?php } ?>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label for="inputTags">Tags</label>
+                                                    <input type="text" id="inputTags" name="tags" class="form-control" required autocomplete="off" value="<?php echo $tags; ?>">
+                                                </div>
                                             </div>
                                         </div>
-                                        <div class="form-group row">
-                                            <label for="inputDiscount" class="col-sm-1 col-form-label">Discount</label>
-                                            <div class="col-md-1">
-                                                <input type="number" value="<?php echo $discount;?>" id="inputDiscount" name="discount" class="form-control" max=100 min=0 autocomplete="off">
-                                            </div>
-                                            <label class="col-sm-1 col-form-label">%</label>
-                                        </div>
+                                        <input type="hidden" id="inputTgl" name="tglPosting" class="form-control" value="<?php echo date('Y-m-d H:i:s'); ?>" readonly="readonly">
+                                        <input type="hidden" id="idKategori" name="idKategori" class="form-control" value="" readonly="readonly">
+                                        <input type="hidden" id="id_article" name="id_article" class="form-control" value="<?php echo $id_artikel; ?>" readonly="readonly">
                                         <button type="submit" class="btn btn-primary float-right">Simpan</button>
                                     </form>        
                                 </div>
@@ -353,7 +369,6 @@ while($d_head = mysqli_fetch_array($result_head)){
     <!-- InputMask -->
     <script src="plugins/moment/moment.min.js"></script>
     <script src="plugins/inputmask/jquery.inputmask.min.js"></script>
-    <script src="plugins/number-thousand-separator/easy-number-separator.js"></script>
     <!-- Page specific script -->
     <script>
         $(document).ready(function() {

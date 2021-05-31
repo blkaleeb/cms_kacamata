@@ -267,6 +267,10 @@ if($_SESSION['status_ca'] !="login"){
                                                         style="width: 150px; margin-top: 10px; margin-right: 20px;">
                                                         <i class="fas fa-pencil-alt"></i> Edit
                                                     </a>
+                                                    <a class="btn btn-confirm" id="btnAddCol" href="varian_produk.php?id_produk=<?php echo $d_head['id_produk']; ?>"
+                                                        style="width: 150px; margin-top: 10px; margin-right: 20px;">
+                                                        <i class="fas fa-pencil-alt"></i> Lihat Varian
+                                                    </a>
                                                     <a type="submit" class="btn btn-danger" href="controller/conn_delete_produk.php?id_produk=<?php echo $d_head['id_produk']; ?>"
                                                         style="width: 150px; margin-top: 10px; right: 0px;">
                                                         <i class="fas fa-times"></i> Delete

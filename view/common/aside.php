@@ -80,6 +80,31 @@ if (isset($_GET['periode']) && !isset($_GET['outlet_x'])) {
                     </a>
                 </li>
                 <li class="nav-item">
+                    <a href="#" class="nav-link <?php if ($first_part=="produk.php.php" || $first_part=="varian_produk.php") {echo "active"; } else  {echo "noactive";}?>">
+                        <i class="nav-icon fas fa-shopping-cart"></i>
+                        <p>
+                            Produk
+                            <i class="fas fa-angle-left right"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="produk.php.php"
+                                class="nav-link <?php if ($first_part=="produk.php.php") {echo "active"; } else  {echo "noactive";}?>">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Banner 1</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="varian_produk.php"
+                                class="nav-link <?php if ($first_part=="varian_produk.php") {echo "active"; } else  {echo "noactive";}?>">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Banner 2</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-item">
                     <a href="#" class="nav-link <?php if ($first_part=="banner_1.php" || $first_part=="banner_promo.php" 
                     || $first_part=="banner_2.php") {echo "active"; } else  {echo "noactive";}?>">
                         <i class="nav-icon fas fa-shopping-cart"></i>

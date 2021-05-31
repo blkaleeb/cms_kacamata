@@ -11,9 +11,5 @@ include 'conn.php';
     $stmt3->close();
 
     header("location:../produk.php?");
-
-
-
-
-
+    
 ?>
