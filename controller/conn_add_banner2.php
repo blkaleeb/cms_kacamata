@@ -2,8 +2,7 @@
 include 'conn.php';
 session_start();
     
-
-$target_dir = "../img/banner_promo/";
+$target_dir = "../img/banner_2/";
 $target_file = $target_dir . basename($_FILES["lampiran"]["name"]);
 $name_image1 = basename($_FILES["lampiran"]["name"]);
 $uploadOk = 1;
@@ -30,30 +29,20 @@ if ($uploadOk == 0) {
     }
   }
 
-    $stmt1 = $db2->prepare("INSERT INTO `bannerPromo` (harga, gambar, judul, tanggal_berlaku, status_banner)
-                            VALUES(?, ?, ?, ?, ?)");
-    $stmt1->bind_param("sssss", $harga, $name_image1, $judul, $tanggal_berlaku, $status_banner);
-    
-    $harga = mysqli_real_escape_string($db2,$_POST['harga']);
-    $judul = mysqli_real_escape_string($db2,$_POST['judul']);
-    $tanggal_berlaku = mysqli_real_escape_string($db2,$_POST['tanggal_berlaku']);
-    $status_banner = mysqli_real_escape_string($db2,$_POST['status_banner']);
+    $stmt1 = $db2->prepare("INSERT INTO `banner2` (gambar) VALUES(?)");
+    $stmt1->bind_param("s", $name_image1);
 
-    $b = str_replace( ',', '', $harga );
-
-    if( is_numeric( $b ) ) {
-        $harga = $b;
-    }
-
-    echo '<br> harga: '.$harga ;
-    echo '<br> judul: '.$judul ;
-    echo '<br> tanggal_berlaku: '.$tanggal_berlaku ;
-    echo '<br> status_banner: '.$status_banner ;
     echo '<br> name_image1: '.$name_image1 ;
 
     $stmt1->execute();
     $stmt1->close();
     
-    header("location:../banner_promo.php");
+    header("location:../banner_2.php");
+
+
+
+	
+
+
 
 ?>

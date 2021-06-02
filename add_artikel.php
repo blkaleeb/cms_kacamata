@@ -240,7 +240,7 @@ if($_SESSION['status_ca'] !="login"){
 
                                 <!-- /.card-header -->
                                 <div class="card-body">
-                                    <form action="../cms_kacamata/controller/conn_add_artikel.php" method="post">
+                                    <form action="../cms_kacamata/controller/conn_add_artikel.php" method="post" enctype="multipart/form-data" >
                                         <div class="row">
                                             <div class="col-md-12">
                                                 <div class="form-group">
@@ -248,10 +248,13 @@ if($_SESSION['status_ca'] !="login"){
                                                     <input type="text" id="inputJudul" name="judul" class="form-control" required autocomplete="off">
                                                 </div>
                                             </div>
-                                            <div class="col-md-12">
+                                            <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <label for="inputUrlGambar">URL Gambar</label>
-                                                    <textarea class="lampiran" id="inputContent" name="lampiran" placeholder="Place some text here" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;" required autocomplete="off"></textarea>
+                                                    <label for="inputLampiran">Thumbnail</label>
+                                                    <input class="form-control" type="file" id="lampiran" name="lampiran">
+                                                    <label for="lampiran"><img id="blah"
+                                                        style="width: 200px; border: 1px solid black; margin-top: 30px; paddingL 10px;"
+                                                        src="img/upload.PNG" alt="your image" /></label>
                                                 </div>
                                             </div>
                                             <div class="col-md-12">
@@ -353,30 +356,22 @@ if($_SESSION['status_ca'] !="login"){
     <script src="plugins/inputmask/jquery.inputmask.min.js"></script>
     <!-- Page specific script -->
     <script>
-        $(document).ready(function() {
-        $('#lampiran').summernote({
-            height: 200,
-            onImageUpload: function(files, editor, welEditable) {
-            sendFile(files[0], editor, welEditable);
+        function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+            $('#blah').attr('src', e.target.result);
             }
+
+            reader.readAsDataURL(input.files[0]); // convert to base64 string
+        }
+        }
+
+        $("#lampiran").change(function () {
+        readURL(this);
         });
 
-        function sendFile(file, editor, welEditable) {
-            data = new FormData();
-            data.append("file", file);
-            $.ajax({
-            data: data,
-            type: "POST",
-            url: "/../cms_kacamata/controller/conn_add_artikel.php",
-            cache: false,
-            contentType: false,
-            processData: false,
-            success: function(url) {
-                editor.insertImage(welEditable, url);
-            }
-            });
-        }
-        });
         
             //Datemask dd/mm/yyyy
             $('#datemask').inputmask('dd/mm/yyyy', { 'placeholder': 'dd/mm/yyyy' })

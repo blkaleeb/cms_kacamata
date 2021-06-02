@@ -74,54 +74,56 @@ if($_SESSION['status_ca'] !="login"){
     <div class="modal fade" id="modal-edit-header">
         <div class="modal-dialog">
             <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title" id="exampleModalLabel">Edit Konsumen</h4>
+            <div class="modal-header">
+                    <h4 class="modal-title" id="exampleModalLabel">Edit - Banner 1</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form action="controller/conn_edit_konsumen.php" method="post">
-                <div class="modal-body">
+                <form action="controller/conn_edit_bannerPromo.php" method="post"  enctype="multipart/form-data">
+                    <div class="modal-body">                        
                         <div class="form-group row">
-                            <label for="nik" class="col-sm-12 col-form-label">Id Konsumen</label>
+                            <label for="inputJudul" class="col-sm-12 col-form-label">Judul</label>
                             <div class="col-sm-12">
-                                <input type="text" class="form-control" id="idKonE" name="idKonE"
-                                    placeholder="Id Konsumen" value="" data-inputmask='"mask": "a{1,4}-9999"' data-mask>
+                                <input type="text" class="form-control" id="judul1" name="judul1"
+                                    placeholder="place some text here" value="">
                             </div>
                         </div>
-                    <div class="form-group row">
-                        <label for="namaPerusahaan" class="col-sm-12 col-form-label">Nama Perusahaan</label>
-                        <div class="col-sm-12">
-                            <input type="text" class="form-control" id="namaPerusahaan1" name="namaPerusahaan1"
-                                placeholder="Nama Perusahaan" value="">
+
+                        <!-- <div class="form-group">
+                            <label for="inputLampiran">Gambar</label>
+                            <input class="form-control" type="file" id="lampiran1" name="lampiran1">
+                            <label for="lampiran"><img id="blah"
+                                style="width: 200px; height: 200px; border: 1px solid black; margin-top: 30px; paddingL 10px;"
+                                src="img/upload.PNG" alt="your image" /></label>
+                        </div> -->
+
+                        <div class="form-group row">
+                            <label for="inputDiscount" class="col-sm-12 col-form-label">Harga</label>
+                            <div class="col-sm-3">
+                                <input type="number" class="form-control" id="harga1" name="harga1"
+                                    placeholder="Harga">
+                            </div>
                         </div>
+
+                        <div class="form-group row">
+                            <label for="inputDiscount" class="col-sm-12 col-form-label">Tanggal berlaku</label>
+                            <div class="col-sm-12">
+                                <input type="date" class="form-control" id="tanggal_berlaku1" name="tanggal_berlaku1" value=""/>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="text3" class="col-sm-12 col-form-label">Text 3</label>
+                            <div class="col-sm-12">
+                                <input type="text" class="form-control" id="status_banner1" name="status_banner1" placeholder="place some text here" value="">
+                            </div>
+                        </div>
+
                     </div>
 
-                    <div class="form-group row">
-                        <label for="alamatPerusahaan" class="col-sm-12 col-form-label">Alamat Perusahaan</label>
-                        <div class="col-sm-12">
-                            <input type="text" class="form-control" id="alamatPerusahaan1" name="alamatPerusahaan1"
-                                placeholder="Alamat Perusahaan" value="">
-                        </div>
-                    </div>
+                    <input type="hidden" class="form-group" id="id_banner1" name="id_banner1">
 
-                    <div class="form-group row">
-                        <label for="noTelp" class="col-sm-12 col-form-label">No Telphone Perusahaan</label>
-                        <div class="col-sm-12">
-                            <input type="text" class="form-control" id="noTelp1" name="noTelp1" data-inputmask='"mask": "9999999999999"' data-mask
-                                placeholder="No Telp Perusahaan" value="">
-                        </div>
-                    </div>
-
-                    <div class="form-group row">
-                        <label for="emailPerusahaan" class="col-sm-12 col-form-label">Email Perusahaan</label>
-                        <div class="col-sm-12">
-                            <input type="email" class="form-control" id="emailPerusahaan1" name="emailPerusahaan1"
-                                placeholder="Email Perusahaan" value="">
-                        </div>
-                    </div>
-                    <input class="idKon1" type="hidden" name="idKon1">
-                    </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
                         <button type="submit" class="btn btn-primary">Yes</button>
@@ -144,7 +146,7 @@ if($_SESSION['status_ca'] !="login"){
                     </button>
                 </div>
 
-                <form action="controller/conn_add_bannerPromo.php" method="post">
+                <form action="controller/conn_add_bannerPromo.php" method="post" enctype="multipart/form-data">
                     <div class="modal-body">                        
                         <div class="form-group row">
                             <label for="inputJudul" class="col-sm-12 col-form-label">Judul</label>
@@ -154,18 +156,18 @@ if($_SESSION['status_ca'] !="login"){
                             </div>
                         </div>
 
-                        <!-- <div class="form-group row">
-                            <label for="inputGambar" class="col-sm-12 col-form-label">Gambar</label>
-                            <div class="col-sm-12">
-                                <input type="text" class="form-control" id="inputGambar" name="lampiran"
-                                    placeholder="place some text here" value="">
-                            </div>
-                        </div> -->
+                        <div class="form-group">
+                            <label for="inputLampiran">Gambar</label>
+                            <input class="form-control" type="file" id="lampiran" name="lampiran">
+                            <label for="lampiran"><img id="blah"
+                                style="width: 200px; height: 200px; border: 1px solid black; margin-top: 30px; paddingL 10px;"
+                                src="img/upload.PNG" alt="your image" /></label>
+                        </div>
 
                         <div class="form-group row">
                             <label for="inputHarga" class="col-sm-12 col-form-label">Harga</label>
                             <div class="col-sm-12">
-                                <input type="number" class="form-control" id="inputHarga" name="harga"
+                                <input type="text" class="number-separator form-control" id="inputHarga" name="harga"
                                     placeholder="Input harga promo disini" value=""> 
                             </div>
                         </div>
@@ -245,7 +247,6 @@ if($_SESSION['status_ca'] !="login"){
                                     <table id="example1" class="table table-bordered table-striped">
                                         <thead>
                                             <tr>
-                                                <th>No</th>
                                                 <th>Judul</th>
                                                 <th>Gambar</th>
                                                 <th>Harga</th>
@@ -261,18 +262,24 @@ if($_SESSION['status_ca'] !="login"){
                                             while($d_head = mysqli_fetch_array($result_head)){
                                             ?>
                                             <tr>
-                                                <td><?php echo $no; 
-                                                        $no++; ?></td>
                                                 <td> <?php echo $d_head['judul']; ?> </td>
-                                                <td> <img src="/../cms_kacamata/img/thumbnail/nba2k19.jpg" alt=""> </td>
-                                                <td> <?php echo $d_head['harga']; ?> </td>
+                                                <td> <img class="shadow"
+                                                    style="width: 200px; border: 1px solid black;"
+                                                    src="img/banner_promo/<?php echo $d_head['gambar']; ?>" alt="your image" /> </td>
+                                                <td>Rp <?php echo $d_head['harga']; ?> </td>
                                                 <td> <?php echo $d_head['tanggal_berlaku']; ?> </td>
                                                 <td> <?php echo $d_head['status_banner']; ?> </td>
                                                 <td>
-                                                    <a class="btn btn-info" id="btnAddCol" href="edit_artikel.php?id_artikel="
-                                                        style="width: 150px; margin-top: 10px; margin-right: 20px;">
+                                                    <button class="btn btn-info" name="id_ev"
+                                                            data-c="<?php echo $d_head['judul']; ?>"
+                                                            data-e="<?php echo $d_head['harga']; ?>"
+                                                            data-v="<?php echo $d_head['tanggal_berlaku']; ?>"
+                                                            data-i="<?php echo $d_head['status_banner']; ?>"
+                                                            data-j="<?php echo $d_head['id_banner']; ?>"
+                                                            data-toggle="modal" data-target="#modal-edit-header"
+                                                        style="width: 100px; margin-top: 10px; margin-right: 20px;">
                                                         <i class="fas fa-pencil-alt"></i> Edit
-                                                    </a>
+                                                    </button>
                                                     <a type="submit" class="btn btn-danger" href="controller/conn_delete_artikel.php?id_artikel=<?php echo $d_head['id_banner']?>"
                                                         style="width: 150px; margin-top: 10px; right: 0px;">
                                                         <i class="fas fa-times"></i> Delete
@@ -347,8 +354,26 @@ if($_SESSION['status_ca'] !="login"){
     <!-- InputMask -->
     <script src="plugins/moment/moment.min.js"></script>
     <script src="plugins/inputmask/jquery.inputmask.min.js"></script>
+    <script src="plugins/number-thousand-separator/easy-number-separator.js"></script>
     <!-- Page specific script -->
     <script>
+        function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+            $('#blah').attr('src', e.target.result);
+            }
+
+            reader.readAsDataURL(input.files[0]); // convert to base64 string
+        }
+        }
+
+        $("#lampiran").change(function () {
+        readURL(this);
+        });
+
+     
             //Datemask dd/mm/yyyy
             $('#datemask').inputmask('dd/mm/yyyy', { 'placeholder': 'dd/mm/yyyy' })
             //Datemask2 mm/dd/yyyy
@@ -400,21 +425,21 @@ if($_SESSION['status_ca'] !="login"){
             var recipient_v = button.data('v');
             var recipient_c = button.data('c');
             var recipient_i = button.data('i');
-            var recipient_a = button.data('a');
+            var recipient_j = button.data('j');
             // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
             // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
             var modal = $(this);
-            modal.find('.idKon1').val(recipient_c);
-            modal.find('.namaPerusahaan1').val(recipient_e);
-            modal.find('.noTelp1').val(recipient_v);
-            modal.find('.alamatPerusahaan1').val(recipient_i);
-            modal.find('.emailPerusahaan1').val(recipient_a);
+            modal.find('.judul1').val(recipient_c);
+            modal.find('.harga1').val(recipient_e);
+            modal.find('.tanggal_berlaku1').val(recipient_v);
+            modal.find('.status_banner1').val(recipient_i);
+            modal.find('.id_banner1').val(recipient_j);
 
-            document.getElementById("idKonE").value = recipient_c;
-            document.getElementById("namaPerusahaan1").value = recipient_e;
-            document.getElementById("noTelp1").value = recipient_v;
-            document.getElementById("alamatPerusahaan1").value = recipient_i;
-            document.getElementById("emailPerusahaan1").value = recipient_a;
+            document.getElementById("judul1").value = recipient_c;
+            document.getElementById("harga1").value = recipient_e;
+            document.getElementById("tanggal_berlaku1").value = recipient_v;
+            document.getElementById("status_banner1").value = recipient_i;
+            document.getElementById("id_banner1").value = recipient_j;
             
         })
 

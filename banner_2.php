@@ -144,15 +144,15 @@ if($_SESSION['status_ca'] !="login"){
                     </button>
                 </div>
 
-                <form action="controller/conn_add_banner2.php" method="post">
+                <form action="controller/conn_add_banner2.php" method="post" enctype="multipart/form-data">
                     <div class="modal-body"> 
 
-                        <div class="form-group row">
-                            <label for="inputGambar" class="col-sm-12 col-form-label">Gambar</label>
-                            <div class="col-sm-12">
-                                <input type="text" class="form-control" id="inputGambar" name="lampiran"
-                                    placeholder="place some text here" value="">
-                            </div>
+                        <div class="form-group">
+                            <label for="inputLampiran">Gambar</label>
+                            <input class="form-control" type="file" id="lampiran" name="lampiran">
+                            <label for="lampiran"><img id="blah"
+                                style="width: 200px; height: 200px; border: 1px solid black; margin-top: 30px; paddingL 10px;"
+                                src="img/upload.PNG" alt="your image" /></label>
                         </div>
 
                     </div>
@@ -227,13 +227,11 @@ if($_SESSION['status_ca'] !="login"){
                                             <tr>
                                                 <td><?php echo $no; 
                                                         $no++; ?></td>
-                                                <td> <img src="/../cms_kacamata/img/thumbnail/nba2k19.jpg" alt=""> </td>
+                                                <td> <img class="shadow"
+                                                    style="width: 200px; border: 1px solid black;"
+                                                    src="img/banner_2/<?php echo $d_head['gambar']; ?>" alt="your image" /> </td>
                                                 <td>
-                                                    <a class="btn btn-info" id="btnAddCol" href="edit_artikel.php?id_artikel=<?php echo $d_head['id_article']; ?>"
-                                                        style="width: 150px; margin-top: 10px; margin-right: 20px;">
-                                                        <i class="fas fa-pencil-alt"></i> Edit
-                                                    </a>
-                                                    <a type="submit" class="btn btn-danger" href="controller/conn_delete_artikel.php?id_artikel=<?php echo $d_head['id_article']; ?>"
+                                                    <a type="submit" class="btn btn-danger" href="controller/conn_delete_banner2.php?id_banner=<?php echo $d_head['id_banner']; ?>"
                                                         style="width: 150px; margin-top: 10px; right: 0px;">
                                                         <i class="fas fa-times"></i> Delete
                                                     </a>
@@ -309,6 +307,22 @@ if($_SESSION['status_ca'] !="login"){
     <script src="plugins/inputmask/jquery.inputmask.min.js"></script>
     <!-- Page specific script -->
     <script>
+        function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+            $('#blah').attr('src', e.target.result);
+            }
+
+            reader.readAsDataURL(input.files[0]); // convert to base64 string
+        }
+        }
+
+        $("#lampiran").change(function () {
+        readURL(this);
+        });
+
             //Datemask dd/mm/yyyy
             $('#datemask').inputmask('dd/mm/yyyy', { 'placeholder': 'dd/mm/yyyy' })
             //Datemask2 mm/dd/yyyy

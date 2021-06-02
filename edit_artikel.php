@@ -16,6 +16,7 @@ while($d_head = mysqli_fetch_array($result_head)){
    $id_kategori= $d_head['id_kategori'];
    $tags= $d_head['tags'];
    $kategori= $d_head['kategori'];
+   $thumbnail= $d_head['thumbnail'];
 }
 ?>
 <html lang="en">
@@ -252,7 +253,7 @@ while($d_head = mysqli_fetch_array($result_head)){
 
                                 <!-- /.card-header -->
                                 <div class="card-body">
-                                    <form action="../cms_kacamata/controller/conn_edit_artikel.php" method="post">
+                                    <form action="../cms_kacamata/controller/conn_edit_artikel.php" method="post" enctype="multipart/form-data">
                                         <div class="row">
                                             <div class="col-md-12">
                                                 <div class="form-group">
@@ -260,12 +261,13 @@ while($d_head = mysqli_fetch_array($result_head)){
                                                     <input type="text" id="inputJudul" name="judul" class="form-control" required autocomplete="off" value="<?php echo $judul; ?>">
                                                 </div>
                                             </div>
-                                            <div class="col-md-12">
+                                            <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <label for="inputUrlGambar">URL Gambar</label>
-                                                    <textarea class="lampiran" id="inputContent" name="lampiran" placeholder="Place some text here" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;" required autocomplete="off">
-                                                        <?php echo "Gambar belum beres"; ?>
-                                                    </textarea>
+                                                    <label for="inputLampiran">Thumbnail</label>
+                                                    <input class="form-control" type="file" id="lampiran" name="lampiran">
+                                                    <label for="lampiran"><img id="blah"
+                                                        style="width: 200px; border: 1px solid black; margin-top: 30px; paddingL 10px;"
+                                                        src="img/thumbnail/<?php echo $thumbnail; ?>" alt="your image" /></label>
                                                 </div>
                                             </div>
                                             <div class="col-md-12">
@@ -371,30 +373,25 @@ while($d_head = mysqli_fetch_array($result_head)){
     <script src="plugins/inputmask/jquery.inputmask.min.js"></script>
     <!-- Page specific script -->
     <script>
-        $(document).ready(function() {
-        $('#lampiran').summernote({
-            height: 200,
-            onImageUpload: function(files, editor, welEditable) {
-            sendFile(files[0], editor, welEditable);
+        
+                                                                
+        function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+            $('#blah').attr('src', e.target.result);
             }
+
+            reader.readAsDataURL(input.files[0]); // convert to base64 string
+        }
+        }
+
+        $("#lampiran").change(function () {
+        readURL(this);
         });
 
-        function sendFile(file, editor, welEditable) {
-            data = new FormData();
-            data.append("file", file);
-            $.ajax({
-            data: data,
-            type: "POST",
-            url: "/../cms_kacamata/controller/conn_add_artikel.php",
-            cache: false,
-            contentType: false,
-            processData: false,
-            success: function(url) {
-                editor.insertImage(welEditable, url);
-            }
-            });
-        }
-        });
+
         
             //Datemask dd/mm/yyyy
             $('#datemask').inputmask('dd/mm/yyyy', { 'placeholder': 'dd/mm/yyyy' })
@@ -507,13 +504,6 @@ while($d_head = mysqli_fetch_array($result_head)){
                     ['table', ['table']],
                     ['insert', ['link', 'picture', 'video']],
                     ['view', ['fullscreen', 'codeview', 'help']],
-                ]
-            });
-
-            // Summernote
-            $('.lampiran').summernote({
-                toolbar: [
-                    ['insert', ['picture']],
                 ]
             });
         })

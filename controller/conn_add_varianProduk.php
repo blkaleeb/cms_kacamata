@@ -30,8 +30,8 @@ session_start();
 	  }
 	echo $name_image1."<br>";
     
-    // $stmt1 = $db2->prepare("INSERT INTO `varian` (id_produk, gambar) VALUES(?, ?)");
-    // $stmt1->bind_param("ss", $id_produk, $name_image1 );
+    $stmt1 = $db2->prepare("INSERT INTO `varian` (id_produk, gambar) VALUES(?, ?)");
+    $stmt1->bind_param("ss", $id_produk, $name_image1 );
     
     
     $id_produk = mysqli_real_escape_string($db2,$_POST['id_produk']);
@@ -39,11 +39,11 @@ session_start();
     echo 'name_image1: '.$name_image1;
 
 
-    // $stmt1->execute();
-    // printf("Error: %s.\n", $stmt1->error);
-    // $stmt1->close();
+    $stmt1->execute();
+    printf("Error: %s.\n", $stmt1->error);
+    $stmt1->close();
     
-    // header("location:../artikel.php");
+    header("location:../varian_produk.php?id_produk=$id_produk");
 
 
 

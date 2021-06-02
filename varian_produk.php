@@ -8,12 +8,8 @@ if($_SESSION['status_ca'] !="login"){
 
 $id_produk = $_GET['id_produk'];
 
-$result_head = mysqli_query($db2,"select * from `produk` where id_produk= '$id_produk' ");
+$result_head = mysqli_query($db2,"select * from `varian` where id_produk= '$id_produk' ");
 while($d_head = mysqli_fetch_array($result_head)){
-   $nama= $d_head['nama'];
-   $deskripsi= $d_head['deskripsi'];
-   $discount= $d_head['discount'];
-   $harga= $d_head['harga'];
    $gambar= $d_head['gambar'];
 }
 ?>
@@ -155,7 +151,7 @@ while($d_head = mysqli_fetch_array($result_head)){
                     </button>
                 </div>
 
-                <form action="controller/conn_add_varianProduk.php" method="post">
+                <form action="controller/conn_add_varianProduk.php" method="post" enctype="multipart/form-data">
                     <div class="modal-body">
 
                         <div class="form-group row">
@@ -229,7 +225,7 @@ while($d_head = mysqli_fetch_array($result_head)){
                                         <thead>
                                             <tr>
                                                 <th>Varian</th>
-                                                <th>Action <?php echo $d_head['gambar']; ?></th>
+                                                <th>Action</th>
                                                 
                                             </tr>
                                         </thead>
@@ -240,7 +236,11 @@ while($d_head = mysqli_fetch_array($result_head)){
                                             while($d_head = mysqli_fetch_array($result_head)){
                                             ?>
                                             <tr>
-                                                <td><?php echo $d_head['gambar']; ?></td>
+                                                <td> 
+                                                    <img id="blah" class="shadow"
+                                                    style="width: 200px; border: 1px solid black;"
+                                                    src="img/varian/<?php echo $d_head['gambar']; ?>" alt="your image" />
+                                                </td>
                                                 <td>
                                                     <a type="submit" class="btn btn-danger" href="controller/conn_delete_varianProduk.php?id_produk=<?php echo $d_head['id_produk']; ?>&gambar=<?php echo $d_head['gambar']; ?>"
                                                         style="width: 150px; margin-top: 10px; right: 0px;">
@@ -358,7 +358,7 @@ while($d_head = mysqli_fetch_array($result_head)){
 
 
         $("#lampiran").change(function () {
-        readURL(this);
+            readURL(this);
         });
         
         $('#modal-cancel').on('show.bs.modal', function (event) {

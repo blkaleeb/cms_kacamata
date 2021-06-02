@@ -251,7 +251,7 @@ while($d_head = mysqli_fetch_array($result_head)){
 
                                 <!-- /.card-header -->
                                 <div class="card-body">
-                                    <form action="../cms_kacamata/controller/conn_edit_produk.php" method="post">
+                                    <form action="../cms_kacamata/controller/conn_edit_produk.php" method="post" enctype="multipart/form-data">
                                         <div class="row">
                                             <div class="col-md-12">
                                                 <div class="form-group">
@@ -263,6 +263,15 @@ while($d_head = mysqli_fetch_array($result_head)){
                                                 <div class="form-group">
                                                     <label for="inputNamaProduk">Nama Produk</label>
                                                     <input type="text" value="<?php echo $nama;?>" id="inputNamaProduk" name="namaProduk" class="form-control" required>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="inputLampiran">Gambar Produk</label>
+                                                    <input class="form-control" type="file" id="lampiran" name="lampiran">
+                                                    <label for="lampiran"><img id="blah"
+                                                        style="width: 200px; border: 1px solid black; margin-top: 30px; paddingL 10px;"
+                                                        src="img/gambarUtama/<?php echo $gambar; ?>" alt="your image" /></label>
                                                 </div>
                                             </div>
                                             <div class="col-md-12">
@@ -356,30 +365,22 @@ while($d_head = mysqli_fetch_array($result_head)){
     <script src="plugins/number-thousand-separator/easy-number-separator.js"></script>
     <!-- Page specific script -->
     <script>
-        $(document).ready(function() {
-        $('#lampiran').summernote({
-            height: 200,
-            onImageUpload: function(files, editor, welEditable) {
-            sendFile(files[0], editor, welEditable);
+        function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+            $('#blah').attr('src', e.target.result);
             }
+
+            reader.readAsDataURL(input.files[0]); // convert to base64 string
+        }
+        }
+
+        $("#lampiran").change(function () {
+        readURL(this);
         });
 
-        function sendFile(file, editor, welEditable) {
-            data = new FormData();
-            data.append("file", file);
-            $.ajax({
-            data: data,
-            type: "POST",
-            url: "/../cms_kacamata/controller/conn_add_artikel.php",
-            cache: false,
-            contentType: false,
-            processData: false,
-            success: function(url) {
-                editor.insertImage(welEditable, url);
-            }
-            });
-        }
-        });
         
             //Datemask dd/mm/yyyy
             $('#datemask').inputmask('dd/mm/yyyy', { 'placeholder': 'dd/mm/yyyy' })
@@ -495,12 +496,6 @@ while($d_head = mysqli_fetch_array($result_head)){
                 ]
             });
 
-            // Summernote
-            $('.lampiran').summernote({
-                toolbar: [
-                    ['insert', ['picture']],
-                ]
-            });
         })
         
         function setKategori() {

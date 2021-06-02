@@ -258,18 +258,20 @@ if($_SESSION['status_ca'] !="login"){
                                             <tr>
                                                 <td><?php echo $d_head['id_produk']; ?></td>
                                                 <td><?php echo $d_head['nama']; ?></td>
-                                                <td><?php echo $d_head['harga']; ?></td>
-                                                <td><?php echo $d_head['discount']; ?></td>
+                                                <td>Rp <?php echo $d_head['harga']; ?></td>
+                                                <td><?php echo $d_head['discount']; ?> %</td>
                                                 <td><?php echo $d_head['deskripsi']; ?></td>
-                                                <td> <img src="/../cms_kacamata/img/thumbnail/nba2k19.jpg" alt=""> </td>
+                                                <td> <img class="shadow"
+                                                    style="width: 200px; border: 1px solid black;"
+                                                    src="img/gambarUtama/<?php echo $d_head['gambar']; ?>" alt="your image" /> </td>
                                                 <td>
                                                     <a class="btn btn-info" id="btnAddCol" href="edit_produk.php?id_produk=<?php echo $d_head['id_produk']; ?>"
                                                         style="width: 150px; margin-top: 10px; margin-right: 20px;">
                                                         <i class="fas fa-pencil-alt"></i> Edit
                                                     </a>
-                                                    <a class="btn btn-confirm" id="btnAddCol" href="varian_produk.php?id_produk=<?php echo $d_head['id_produk']; ?>"
+                                                    <a class="btn btn-secondary" id="btnAddCol" href="varian_produk.php?id_produk=<?php echo $d_head['id_produk']; ?>"
                                                         style="width: 150px; margin-top: 10px; margin-right: 20px;">
-                                                        <i class="fas fa-pencil-alt"></i> Lihat Varian
+                                                        <i class="fas fa-layer-group"></i> Lihat Varian
                                                     </a>
                                                     <a type="submit" class="btn btn-danger" href="controller/conn_delete_produk.php?id_produk=<?php echo $d_head['id_produk']; ?>"
                                                         style="width: 150px; margin-top: 10px; right: 0px;">

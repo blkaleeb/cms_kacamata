@@ -258,7 +258,9 @@ if($_SESSION['status_ca'] !="login"){
                                             ?>
                                             <tr>
                                                 <td><?php echo $d_head['judul']; ?></td>
-                                                <td> <img src="/../cms_kacamata/img/thumbnail/nba2k19.jpg" alt=""> </td>
+                                                <td> <img class="shadow"
+                                                    style="width: 200px; border: 1px solid black;"
+                                                    src="img/thumbnail/<?php echo $d_head['thumbnail']; ?>" alt="your image" /> </td>
                                                 <td><?php echo $d_head['kategori']; ?></td>
                                                 <td><?php echo $d_head['tanggal_posting']; ?></td>
                                                 <td>
